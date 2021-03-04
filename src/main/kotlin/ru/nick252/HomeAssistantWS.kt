@@ -1,19 +1,19 @@
-package ru.nick2525
+package ru.nick252
 
 import org.java_websocket.client.WebSocketClient
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.DeserializationFeature
-import ru.nick2525.types.server.InitMessage
-import ru.nick2525.types.Client.AuthMessage
-import ru.nick2525.types.server.AuthInvalidMessage
-import ru.nick2525.types.server.ResultMessage
-import ru.nick2525.types.server.SubscriptionMessage
-import ru.nick2525.types.server.ServerMessage
-import ru.nick2525.types.Client.ClientMessage
+import ru.nick252.types.server.InitMessage
+import ru.nick252.types.Client.AuthMessage
+import ru.nick252.types.server.AuthInvalidMessage
+import ru.nick252.types.server.ResultMessage
+import ru.nick252.types.server.SubscriptionMessage
+import ru.nick252.types.server.ServerMessage
+import ru.nick252.types.Client.ClientMessage
 import org.java_websocket.handshake.ServerHandshake
-import ru.nick2525.types.SocketMessage
-import ru.nick2525.types.ServerTypes
+import ru.nick252.types.SocketMessage
+import ru.nick252.types.ServerTypes
 import java.lang.Exception
 import java.net.URI
 

@@ -1,7 +1,7 @@
-package ru.nick2525.types.server
+package ru.nick252.types.server
 
-import ru.nick2525.types.SocketMessage
-import ru.nick2525.types.ServerTypes
+import ru.nick252.types.SocketMessage
+import ru.nick252.types.ServerTypes
 
 class InitMessage : SocketMessage {
     var haVersion: String? = null

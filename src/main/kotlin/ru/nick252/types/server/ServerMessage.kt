@@ -1,6 +1,6 @@
-package ru.nick2525.types.server
+package ru.nick252.types.server
 
-import ru.nick2525.types.SocketMessage
+import ru.nick252.types.SocketMessage
 
 open class ServerMessage : SocketMessage {
     /**

@@ -1,6 +1,4 @@
-package ru.nick2525.types
-
-import ru.nick2525.types.EventData
+package ru.nick252.types
 
 class EventMessage {
     var eventType: String? = null

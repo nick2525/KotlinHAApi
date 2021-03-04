@@ -1,11 +1,4 @@
-package ru.nick2525.types
-
-import ru.nick2525.types.SocketMessage
-import ru.nick2525.types.Client.ClientMessage
-import ru.nick2525.types.Client.SubscribeMessage
-import ru.nick2525.types.ServiceData
-import ru.nick2525.types.Client.CallServiceMessage
-import ru.nick2525.types.Client.ClientEntityMessage
+package ru.nick252.types
 
 object Client {
     const val AUTH = "auth"

@@ -1,4 +1,4 @@
-package ru.nick2525.types
+package ru.nick252.types
 
 //@JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY)
 class Result {

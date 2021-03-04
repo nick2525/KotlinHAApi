@@ -1,4 +1,4 @@
-package ru.nick2525.types
+package ru.nick252.types
 
 object ServerTypes {
     const val AUTH_REQUIRED = "auth_required"

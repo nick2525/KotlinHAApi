@@ -1,4 +1,4 @@
-package ru.nick2525.types
+package ru.nick252.types
 
 class ServiceData {
     var entityId: String? = null
