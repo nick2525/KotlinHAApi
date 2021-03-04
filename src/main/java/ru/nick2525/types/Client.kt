@@ -1,0 +1,63 @@
+package ru.nick2525.types
+
+import ru.nick2525.types.SocketMessage
+import ru.nick2525.types.Client.ClientMessage
+import ru.nick2525.types.Client.SubscribeMessage
+import ru.nick2525.types.ServiceData
+import ru.nick2525.types.Client.CallServiceMessage
+import ru.nick2525.types.Client.ClientEntityMessage
+
+object Client {
+    const val AUTH = "auth"
+    const val SUBSCRIBE_EVENTS = "subscribe_events"
+    const val UNSUBSCRIBE_EVENTS = "unsubscribe_events"
+    const val CALL_SERVICE = "call_service"
+    const val GET_STATES = "get_states"
+    const val GET_CONFIG = "get_config"
+    const val GET_SERVICES = "get_services"
+    const val GET_PANELS = "get_panels"
+
+    @Deprecated("")
+    val CAMERA_THUMBNAIL = "camera_thumbnail"
+    const val MEDIA_PLAYER_THUMBNAIL = "media_player_thumbnail"
+    const val PING = "ping"
+
+    class AuthMessage(val accessToken: String) : SocketMessage(AUTH)
+    open class ClientMessage(type: String?, val id: Int) : SocketMessage(type)
+    class SubscribeMessage(id: Int) : ClientMessage(SUBSCRIBE_EVENTS, id) {
+        var eventType: String = ""
+            private set
+
+        fun setEventType(eventType: String): SubscribeMessage {
+            this.eventType = eventType
+            return this
+        }
+    }
+
+    class UnsubscribeMessage(id: Int, val subscription: Int) : ClientMessage(UNSUBSCRIBE_EVENTS, id)
+    class CallServiceMessage(id: Int, val domain: String, val service: String) : ClientMessage(CALL_SERVICE, id) {
+        var serviceData: ServiceData? = null
+            private set
+
+        fun setServiceData(serviceData: ServiceData?): CallServiceMessage {
+            this.serviceData = serviceData
+            return this
+        }
+    }
+
+    class GetStatesMessage(id: Int) : ClientMessage(GET_STATES, id)
+    class GetConfigMessage(id: Int) : ClientMessage(GET_CONFIG, id)
+    class GetServicesMessage(id: Int) : ClientMessage(GET_SERVICES, id)
+    class GetPanelsMessage(id: Int) : ClientMessage(GET_PANELS, id)
+    open class ClientEntityMessage(type: String?, id: Int, val entityId: String) : ClientMessage(type, id)
+
+    @Deprecated("")
+    class CameraThumbnailMessage @Deprecated("") constructor(id: Int, entityId: String) : ClientEntityMessage(
+        CAMERA_THUMBNAIL, id, entityId
+    )
+
+    class MediaPlayerThumbnailMessage(id: Int, entityId: String) :
+        ClientEntityMessage(MEDIA_PLAYER_THUMBNAIL, id, entityId)
+
+    class PingMessage(id: Int) : ClientMessage(PING, id)
+}
