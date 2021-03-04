@@ -1,7 +1,5 @@
 package ru.nick2525.types
 
-import ru.nick2525.types.UnitSystem
-
 //@JsonAutoDetect(fieldVisibility=JsonAutoDetect.Visibility.ANY)
 class Result {
     var context: Context? = null

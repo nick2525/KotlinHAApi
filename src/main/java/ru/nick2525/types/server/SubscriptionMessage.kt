@@ -1,6 +1,5 @@
-package ru.nick2525.types.Server
+package ru.nick2525.types.server
 
-import ru.nick2525.types.Server.ServerMessage
 import ru.nick2525.types.EventMessage
 import ru.nick2525.types.ServerTypes
 

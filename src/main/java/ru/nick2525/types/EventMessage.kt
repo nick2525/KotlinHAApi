@@ -14,7 +14,7 @@ class EventMessage {
     var context: Context? = null
         private set
 
-    constructor() {}
+    constructor()
     constructor(eventType: String?, data: EventData?, origin: String?, timeFired: String?, context: Context?) {
         this.eventType = eventType
         this.data = data

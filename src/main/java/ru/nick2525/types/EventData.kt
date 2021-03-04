@@ -8,7 +8,7 @@ class EventData {
     var newState: State? = null
         private set
 
-    constructor() {}
+    constructor()
     constructor(entityId: String?, oldState: State?, newState: State?) {
         this.entityId = entityId
         this.oldState = oldState

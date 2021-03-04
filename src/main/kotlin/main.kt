@@ -1,8 +1,8 @@
 import ru.nick2525.HomeAssistantWS
 import ru.nick2525.types.Client
-import ru.nick2525.types.Server.AuthInvalidMessage
-import ru.nick2525.types.Server.ResultMessage
-import ru.nick2525.types.Server.SubscriptionMessage
+import ru.nick2525.types.server.AuthInvalidMessage
+import ru.nick2525.types.server.ResultMessage
+import ru.nick2525.types.server.SubscriptionMessage
 import java.net.URI
 
 fun main(args: Array<String>) {

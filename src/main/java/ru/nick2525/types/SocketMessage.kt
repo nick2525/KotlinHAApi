@@ -8,7 +8,7 @@ open class SocketMessage {
     var type: String? = null
         private set
 
-    constructor() {}
+    constructor()
     constructor(type: String?) {
         this.type = type
     }

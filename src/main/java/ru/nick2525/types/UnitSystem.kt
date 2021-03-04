@@ -1,7 +1,5 @@
 package ru.nick2525.types
 
-import ru.nick2525.types.UnitSystem
-
 class UnitSystem {
     var length: String? = null
         private set

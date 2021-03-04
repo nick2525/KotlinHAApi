@@ -14,7 +14,7 @@ class State {
     var context: Context? = null
         private set
 
-    constructor() {}
+    constructor()
     constructor(
         entityId: String?,
         state: String?,

@@ -5,7 +5,7 @@ class Context {
     private var parentId: String? = null
     private var userId: String? = null
 
-    constructor() {}
+    constructor()
     constructor(id: String?, parentId: String?, userId: String?) {
         this.id = id
         this.parentId = parentId

@@ -1,4 +1,4 @@
-package ru.nick2525.types.Server
+package ru.nick2525.types.server
 
 import ru.nick2525.types.SocketMessage
 
@@ -10,7 +10,7 @@ open class ServerMessage : SocketMessage {
     var id = 0
         private set
 
-    constructor() {}
+    constructor()
     constructor(type: String?, id: Int) : super(type) {
         this.id = id
     }

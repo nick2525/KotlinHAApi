@@ -1,4 +1,4 @@
-package ru.nick2525.types.Server
+package ru.nick2525.types.server
 
 import ru.nick2525.types.SocketMessage
 import ru.nick2525.types.ServerTypes

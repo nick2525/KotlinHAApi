@@ -1,9 +1,8 @@
-package ru.nick2525.types.Server
+package ru.nick2525.types.server
 
 import com.fasterxml.jackson.annotation.JsonCreator
 import com.fasterxml.jackson.annotation.JsonProperty
 import ru.nick2525.types.Result
-import ru.nick2525.types.Server.ServerMessage
 import ru.nick2525.types.ServerTypes
 
 class ResultMessage @JsonCreator constructor(

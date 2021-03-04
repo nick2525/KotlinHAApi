@@ -4,12 +4,12 @@ import org.java_websocket.client.WebSocketClient
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.databind.DeserializationFeature
-import ru.nick2525.types.Server.InitMessage
+import ru.nick2525.types.server.InitMessage
 import ru.nick2525.types.Client.AuthMessage
-import ru.nick2525.types.Server.AuthInvalidMessage
-import ru.nick2525.types.Server.ResultMessage
-import ru.nick2525.types.Server.SubscriptionMessage
-import ru.nick2525.types.Server.ServerMessage
+import ru.nick2525.types.server.AuthInvalidMessage
+import ru.nick2525.types.server.ResultMessage
+import ru.nick2525.types.server.SubscriptionMessage
+import ru.nick2525.types.server.ServerMessage
 import ru.nick2525.types.Client.ClientMessage
 import org.java_websocket.handshake.ServerHandshake
 import ru.nick2525.types.SocketMessage

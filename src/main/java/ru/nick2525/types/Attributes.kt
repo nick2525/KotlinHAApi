@@ -6,7 +6,7 @@ class Attributes {
     var unitOfMeasurement: String? = null
         private set
 
-    constructor() {}
+    constructor()
     constructor(unitOfMeasurement: String?, friendlyName: String?) {
         this.unitOfMeasurement = unitOfMeasurement
         this.friendlyName = friendlyName
