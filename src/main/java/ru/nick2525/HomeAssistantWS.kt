@@ -20,10 +20,10 @@ import java.net.URI
 abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
     private val socket: WebSocketClient
     private var messages = 1
-    private fun getJackson(failOnUnknowns: Boolean): ObjectMapper {
+    private fun getJackson(): ObjectMapper {
         val om = ObjectMapper()
         om.propertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
-        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, failOnUnknowns)
+        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
         return om
     }
 
@@ -48,7 +48,7 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
 
     fun onAuthRequired(message: InitMessage?) {
         try {
-            socket.send(getJackson(true).writeValueAsString(AuthMessage(token)))
+            socket.send(getJackson().writeValueAsString(AuthMessage(token)))
         } catch (ex: Exception) {
             System.err.println("onAuthRequired:" + ex.message)
         }
@@ -61,11 +61,21 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
     fun onPong(message: ServerMessage?) {}
     fun send(message: ClientMessage?) {
         try {
-            socket.send(getJackson(true).writeValueAsString(message))
+            socket.send(getJackson().writeValueAsString(message))
         } catch (ex: Exception) {
             System.err.println("send:" + ex.message)
         }
     }
+
+    private val messageTest = """
+        {
+           "id":101,
+           "type":"result",
+           "success":true,
+           "result":[
+           ]
+        }
+    """.trimIndent()
 
     init {
         socket = object : WebSocketClient(serverUri) {
@@ -76,29 +86,31 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
             override fun onMessage(message: String) {
                 println("Socket_Message: $message")
                 try {
-                    val messageObj = getJackson(false).readValue(message, SocketMessage::class.java)
+                    val messageObj = getJackson().readValue(message, SocketMessage::class.java)
                     when (messageObj.type) {
                         ServerTypes.AUTH_REQUIRED -> onAuthRequired(
-                            getJackson(true).readValue(
+                            getJackson().readValue(
                                 message,
                                 InitMessage::class.java
                             )
                         )
                         ServerTypes.AUTH_INVALID -> onAuthInvalid(
-                            getJackson(true).readValue(
+                            getJackson().readValue(
                                 message,
                                 AuthInvalidMessage::class.java
                             )
                         )
                         ServerTypes.AUTH_OK -> onAuthOk()
-                        ServerTypes.RESULT -> onResult(getJackson(true).readValue(message, ResultMessage::class.java))
+                        ServerTypes.RESULT -> onResult(
+                            getJackson().readValue(message, ResultMessage::class.java)
+                        )
                         ServerTypes.EVENT -> onSubscriptionMessage(
-                            getJackson(true).readValue(
+                            getJackson().readValue(
                                 message,
                                 SubscriptionMessage::class.java
                             )
                         )
-                        ServerTypes.PONG -> onPong(getJackson(true).readValue(message, ServerMessage::class.java))
+                        ServerTypes.PONG -> onPong(getJackson().readValue(message, ServerMessage::class.java))
                     }
                 } catch (ex: Exception) {
                     System.err.println("onMessage:" + ex.message)

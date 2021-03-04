@@ -7,7 +7,7 @@ class SubscriptionMessage : ServerMessage {
     var event: EventMessage? = null
         private set
 
-    constructor() {}
+    constructor()
     constructor(id: Int, event: EventMessage?) : super(ServerTypes.EVENT, id) {
         this.event = event
     }

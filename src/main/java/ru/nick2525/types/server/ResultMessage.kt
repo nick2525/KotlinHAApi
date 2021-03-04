@@ -8,5 +8,5 @@ import ru.nick2525.types.ServerTypes
 class ResultMessage @JsonCreator constructor(
     @JsonProperty("id") id: Int,
     @param:JsonProperty("success") val success: Boolean,
-    @param:JsonProperty("result") val result: Result
+    @param:JsonProperty("result") val result: List<Result>
 ) : ServerMessage(ServerTypes.RESULT, id)

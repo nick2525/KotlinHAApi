@@ -7,7 +7,7 @@ class AuthInvalidMessage : SocketMessage {
     var message: String? = null
         private set
 
-    constructor() {}
+    constructor()
     constructor(message: String?) : super(ServerTypes.AUTH_INVALID) {
         this.message = message
     }

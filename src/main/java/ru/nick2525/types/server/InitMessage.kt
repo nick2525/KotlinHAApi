@@ -7,7 +7,7 @@ class InitMessage : SocketMessage {
     var haVersion: String? = null
         private set
 
-    constructor() {}
+    constructor()
     constructor(haVersion: String?) : super(ServerTypes.AUTH_REQUIRED) {
         this.haVersion = haVersion
     }

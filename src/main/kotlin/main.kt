@@ -18,6 +18,7 @@ fun main(args: Array<String>) {
         }
 
         override fun onResult(resultMessage: ResultMessage?) {
+            resultMessage.toString()
         }
 
         override fun onSubscriptionMessage(message: SubscriptionMessage?) {
