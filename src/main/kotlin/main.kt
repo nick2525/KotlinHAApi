@@ -10,7 +10,7 @@ fun main(args: Array<String>) {
     lateinit var ws: HomeAssistantWS
     ws = object : HomeAssistantWS(URI.create(""), "") {
         override fun onAuthInvalid(message: AuthInvalidMessage?) {
-
+            message.toString()
         }
 
         override fun onAuthOk() {

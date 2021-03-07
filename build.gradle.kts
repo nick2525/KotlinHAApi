@@ -5,6 +5,10 @@ plugins {
     application
 }
 
+object Versions {
+    const val JACKSON = "2.12.1"
+}
+
 group = "me.nick252"
 version = "1.0-SNAPSHOT"
 
@@ -12,11 +16,14 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    implementation("com.fasterxml.jackson.core:jackson-core:2.12.1")
-    implementation("com.fasterxml.jackson.core:jackson-databind:2.12.1")
-    implementation("org.java-websocket:Java-WebSocket:1.5.1")
-    testImplementation(kotlin("test-junit"))
+with(Versions){
+    dependencies {
+        implementation("com.fasterxml.jackson.core:jackson-core:$JACKSON")
+        implementation("com.fasterxml.jackson.core:jackson-databind:$JACKSON")
+        implementation("com.fasterxml.jackson.module:jackson-module-kotlin:$JACKSON")
+        implementation("org.java-websocket:Java-WebSocket:1.5.1")
+        testImplementation(kotlin("test-junit"))
+    }
 }
 
 tasks.test {

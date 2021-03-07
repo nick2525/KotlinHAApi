@@ -1,33 +1,10 @@
 package ru.nick252.types
 
-class State {
-    var entityId: String? = null
-        private set
-    var state: String? = null
-        private set
-    var attributes: Attributes? = null
-        private set
-    var lastChanged: String? = null
-        private set
-    var lastUpdated: String? = null
-        private set
-    var context: Context? = null
-        private set
-
-    constructor()
-    constructor(
-        entityId: String?,
-        state: String?,
-        attributes: Attributes?,
-        lastChanged: String?,
-        lastUpdated: String?,
-        context: Context?
-    ) {
-        this.entityId = entityId
-        this.state = state
-        this.attributes = attributes
-        this.lastChanged = lastChanged
-        this.lastUpdated = lastUpdated
-        this.context = context
-    }
-}
+class State(
+    val entityId: String? = null,
+    val state: String? = null,
+    val attributes: Attributes? = null,
+    val lastChanged: String? = null,
+    val lastUpdated: String? = null,
+    val context: Context? = null
+)

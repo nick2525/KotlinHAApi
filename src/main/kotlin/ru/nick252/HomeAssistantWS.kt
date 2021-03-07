@@ -16,12 +16,13 @@ import ru.nick252.types.SocketMessage
 import ru.nick252.types.ServerTypes
 import java.lang.Exception
 import java.net.URI
+import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 
 abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
     private val socket: WebSocketClient
     private var messages = 1
     private fun getJackson(): ObjectMapper {
-        val om = ObjectMapper()
+        val om = jacksonObjectMapper()
         om.propertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
         om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
         return om

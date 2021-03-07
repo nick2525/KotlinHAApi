@@ -1,14 +1,6 @@
 package ru.nick252.types.server
 
-import ru.nick252.types.SocketMessage
 import ru.nick252.types.ServerTypes
+import ru.nick252.types.SocketMessage
 
-class AuthInvalidMessage : SocketMessage {
-    var message: String? = null
-        private set
-
-    constructor()
-    constructor(message: String?) : super(ServerTypes.AUTH_INVALID) {
-        this.message = message
-    }
-}
+data class AuthInvalidMessage(val message: String? = null) : SocketMessage(ServerTypes.AUTH_INVALID)

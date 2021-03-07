@@ -1,23 +1,9 @@
 package ru.nick252.types
 
-class EventMessage {
-    var eventType: String? = null
-        private set
-    var data: EventData? = null
-        private set
-    var origin: String? = null
-        private set
-    var timeFired: String? = null
-        private set
-    var context: Context? = null
-        private set
-
-    constructor()
-    constructor(eventType: String?, data: EventData?, origin: String?, timeFired: String?, context: Context?) {
-        this.eventType = eventType
-        this.data = data
-        this.origin = origin
-        this.timeFired = timeFired
-        this.context = context
-    }
-}
+data class EventMessage(
+    val eventType: String? = null,
+    val data: EventData? = null,
+    val origin: String? = null,
+    val timeFired: String? = null,
+    val context: Context? = null
+)
