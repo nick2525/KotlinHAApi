@@ -18,5 +18,9 @@ data class Result(
     val isSafeMode: Boolean = false,
     val state: String? = null,
     val externalUrl: String?,
-    val internalUrl: String?
+    val internalUrl: String?,
+    val entity_id: String?,
+    val attributes: Attributes?,
+    val lastChanged: String?,
+    val lastUpdated: String?
 )

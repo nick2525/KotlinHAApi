@@ -21,10 +21,11 @@ import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
     private val socket: WebSocketClient
     private var messages = 1
-    private fun getJackson(): ObjectMapper {
+    private fun getJackson(failOnUnknowns: Boolean = false): ObjectMapper {
         val om = jacksonObjectMapper()
         om.propertyNamingStrategy = PropertyNamingStrategies.SNAKE_CASE
-        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
+        om.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, failOnUnknowns)
+        om.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true)
         return om
     }
 
@@ -68,16 +69,6 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
         }
     }
 
-    private val messageTest = """
-        {
-           "id":101,
-           "type":"result",
-           "success":true,
-           "result":[
-           ]
-        }
-    """.trimIndent()
-
     init {
         socket = object : WebSocketClient(serverUri) {
             override fun onOpen(handshakedata: ServerHandshake) {
@@ -103,7 +94,10 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
                         )
                         ServerTypes.AUTH_OK -> onAuthOk()
                         ServerTypes.RESULT -> onResult(
-                            getJackson().readValue(message, ResultMessage::class.java)
+                            getJackson().readValue(
+                                message,
+                                ResultMessage::class.java
+                            )
                         )
                         ServerTypes.EVENT -> onSubscriptionMessage(
                             getJackson().readValue(
@@ -113,8 +107,8 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
                         )
                         ServerTypes.PONG -> onPong(getJackson().readValue(message, ServerMessage::class.java))
                     }
-                } catch (ex: Exception) {
-                    System.err.println("onMessage:" + ex.message)
+                } catch (exception: Exception) {
+                    exception.printStackTrace()
                 }
             }
 
