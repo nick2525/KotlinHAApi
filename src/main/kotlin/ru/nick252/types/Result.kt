@@ -15,12 +15,12 @@ data class Result(
     val allowlistExternalUrls: List<String>?,
     val version: String? = null,
     val configSource: String?,
-    val isSafeMode: Boolean = false,
     val state: String? = null,
     val externalUrl: String?,
     val internalUrl: String?,
     val entity_id: String?,
     val attributes: Attributes?,
     val lastChanged: String?,
-    val lastUpdated: String?
+    val lastUpdated: String?,
+    val safeMode: Boolean?
 )
