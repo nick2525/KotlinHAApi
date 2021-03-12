@@ -18,6 +18,7 @@ import java.lang.Exception
 import java.net.URI
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import ru.nick252.types.Client
+import ru.nick252.types.results.ConfigResultMessage
 import ru.nick252.types.results.StatesResultMessage
 import ru.nick252.types.server.MessageId
 
@@ -131,13 +132,15 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
 
         val parseClass = when (request[id]) {
             is Client.GetStatesMessage -> StatesResultMessage::class.java
+            is Client.GetConfigMessage -> ConfigResultMessage::class.java
             else -> ResultMessage::class.java
         }
-
+        request.remove(id)
         return getJackson().readValue(
             message,
             parseClass
         )
+
     }
 
 }
