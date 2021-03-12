@@ -17,6 +17,9 @@ import ru.nick252.types.ServerTypes
 import java.lang.Exception
 import java.net.URI
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
+import ru.nick252.types.Client
+import ru.nick252.types.results.StatesResultMessage
+import ru.nick252.types.server.MessageId
 
 abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
     private val socket: WebSocketClient
@@ -58,12 +61,14 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
 
     abstract fun onAuthInvalid(message: AuthInvalidMessage?)
     abstract fun onAuthOk()
-    abstract fun onResult(resultMessage: ResultMessage?)
+    abstract fun onResult(resultMessage: ServerMessage?)
     abstract fun onSubscriptionMessage(message: SubscriptionMessage?)
     fun onPong(message: ServerMessage?) {}
-    fun send(message: ClientMessage?) {
+    private val request = mutableMapOf<Int, ClientMessage>()
+    fun send(message: ClientMessage) {
         try {
             socket.send(getJackson().writeValueAsString(message))
+            request.put(message.id, message)
         } catch (ex: Exception) {
             System.err.println("send:" + ex.message)
         }
@@ -93,12 +98,7 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
                             )
                         )
                         ServerTypes.AUTH_OK -> onAuthOk()
-                        ServerTypes.RESULT -> onResult(
-                            getJackson().readValue(
-                                message,
-                                ResultMessage::class.java
-                            )
-                        )
+                        ServerTypes.RESULT -> onResult(parseResult(message))
                         ServerTypes.EVENT -> onSubscriptionMessage(
                             getJackson().readValue(
                                 message,
@@ -122,4 +122,22 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
             }
         }
     }
+
+    private fun parseResult(message: String): ServerMessage {
+        val id = getJackson().readValue(
+            message,
+            MessageId::class.java
+        ).id
+
+        val parseClass = when (request[id]) {
+            is Client.GetStatesMessage -> StatesResultMessage::class.java
+            else -> ResultMessage::class.java
+        }
+
+        return getJackson().readValue(
+            message,
+            parseClass
+        )
+    }
+
 }

@@ -1,7 +1,7 @@
 import ru.nick252.HomeAssistantWS
 import ru.nick252.types.Client
 import ru.nick252.types.server.AuthInvalidMessage
-import ru.nick252.types.server.ResultMessage
+import ru.nick252.types.server.ServerMessage
 import ru.nick252.types.server.SubscriptionMessage
 import java.net.URI
 
@@ -17,7 +17,7 @@ fun main(args: Array<String>) {
             ws.send(Client.GetStatesMessage(101))
         }
 
-        override fun onResult(resultMessage: ResultMessage?) {
+        override fun onResult(resultMessage: ServerMessage?) {
             resultMessage.toString()
         }
 
