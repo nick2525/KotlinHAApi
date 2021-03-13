@@ -1,4 +1,4 @@
-package ru.nick252.types.results
+package ru.nick252.types.results.config
 
 data class ConfigUnitSystem(
     val length: String?,

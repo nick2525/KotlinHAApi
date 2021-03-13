@@ -1,4 +1,4 @@
-package ru.nick252.types.results
+package ru.nick252.types.results.states
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import ru.nick252.types.ServerTypes

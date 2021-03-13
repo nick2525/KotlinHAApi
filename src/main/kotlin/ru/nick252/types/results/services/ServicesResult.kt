@@ -1,0 +1,7 @@
+package ru.nick252.types.results.services
+
+data class ServicesResult(
+    val homeassistant: ServicesHomeassistant?,
+    val persistentNotification: ServicesPersistentNotification?,
+    val recorder: ServicesRecorder?
+)
