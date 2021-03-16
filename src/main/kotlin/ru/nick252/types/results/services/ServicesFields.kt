@@ -5,5 +5,7 @@ data class ServicesFields(
     val longitude: ServicesCoordinates?,
     val message: ServicesDescriptionExample?,
     val title: ServicesDescriptionExample?,
-    val notificationId: ServicesDescriptionExample?
+    val notificationId: ServicesDescriptionExample?,
+    val keepDays: ServicesKeepDays?,
+    val repack: ServicesDescriptionExample?
 )

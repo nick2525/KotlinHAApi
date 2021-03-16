@@ -17,17 +17,17 @@ object Client {
 
     class AuthMessage(val accessToken: String) : SocketMessage(AUTH)
     open class ClientMessage(type: String?, val id: Int) : SocketMessage(type)
-    class SubscribeMessage(id: Int) : ClientMessage(SUBSCRIBE_EVENTS, id) {
+    class SubscribeEvents(id: Int) : ClientMessage(SUBSCRIBE_EVENTS, id) {
         var eventType: String = ""
             private set
 
-        fun setEventType(eventType: String): SubscribeMessage {
+        fun setEventType(eventType: String): SubscribeEvents {
             this.eventType = eventType
             return this
         }
     }
 
-    class UnsubscribeMessage(id: Int, val subscription: Int) : ClientMessage(UNSUBSCRIBE_EVENTS, id)
+    class UnsubscribeEvents(id: Int, val subscription: Int) : ClientMessage(UNSUBSCRIBE_EVENTS, id)
     class CallServiceMessage(id: Int, val domain: String, val service: String) : ClientMessage(CALL_SERVICE, id) {
         var serviceData: ServiceData? = null
             private set

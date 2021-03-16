@@ -1,9 +1,8 @@
 package ru.nick252.types.results.services
 
-data class ServicesDescriptionExample(
+data class ServicesKeepDays(
+    val name: String?,
     val description: String?,
     val example: String?,
-    val name: String?,
-    val default: Boolean?,
     val selector: ServicesSelector?
 )

@@ -14,7 +14,7 @@ fun main(args: Array<String>) {
         }
 
         override fun onAuthOk() {
-            ws.send(Client.GetStatesMessage(101))
+            ws.send(Client.GetServicesMessage(101))
         }
 
         override fun onResult(resultMessage: ServerMessage?) {
@@ -22,6 +22,7 @@ fun main(args: Array<String>) {
         }
 
         override fun onSubscriptionMessage(message: SubscriptionMessage?) {
+            message.toString()
         }
 
     }
