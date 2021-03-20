@@ -4,5 +4,6 @@ data class ServicesResult(
     val homeassistant: ServicesHomeassistant?,
     val persistentNotification: ServicesPersistentNotification?,
     val recorder: ServicesRecorder?,
-    val logger: ServicesLogger?
+    val logger: ServicesLogger?,
+    val systemLog: ServicesSystemLog?
 )
