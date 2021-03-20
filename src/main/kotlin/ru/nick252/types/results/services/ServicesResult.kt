@@ -5,5 +5,6 @@ data class ServicesResult(
     val persistentNotification: ServicesPersistentNotification?,
     val recorder: ServicesRecorder?,
     val logger: ServicesLogger?,
-    val systemLog: ServicesSystemLog?
+    val systemLog: ServicesSystemLog?,
+    val mqtt: ServicesMqtt?
 )
