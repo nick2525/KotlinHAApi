@@ -1,3 +1,7 @@
 package ru.nick252.types.results.services
 
-class ServicesPublish
+data class ServicesPublish(
+    val name: String?,
+    val description: String?,
+    val fields: ServicesFields?
+)

@@ -15,5 +15,11 @@ data class ServicesFields(
     @JsonProperty("homeassistant.components.mqtt") val homeassistantComponentsMqtt: ServicesDescriptionExample?,
     @JsonProperty("custom_components.my_integration") val customComponentsMyIntegration: ServicesDescriptionExample?,
     val aiohttp: ServicesDescriptionExample?,
-    val logger: ServicesLogger?
+    val logger: ServicesLogger?,
+    val topic: ServicesDescriptionExample?,
+    val payload: ServicesDescriptionExample?,
+    val payloadTemplate: ServicesDescriptionExample?,
+    val qos: ServicesDescriptionExample?,
+    val retain: ServicesDescriptionExample?,
+    val duration: ServicesDuration?
 )

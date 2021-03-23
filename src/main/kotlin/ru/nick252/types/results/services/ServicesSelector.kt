@@ -4,5 +4,6 @@ data class ServicesSelector(
     val text: String?,
     val number: ServicesNumber?,
     val boolean: Boolean?,
-    val select: ServicesSelect?
+    val select: ServicesSelect?,
+    val `object`: Any?
 )

@@ -7,5 +7,7 @@ data class ServicesDescriptionExample(
     val default: String?,
     val selector: ServicesSelector?,
     val fields: ServicesFields?,
-    val required: String?
+    val required: String?,
+    val advanced: Boolean?,
+    val values: List<Double>?
 )
