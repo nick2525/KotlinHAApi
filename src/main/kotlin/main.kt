@@ -19,6 +19,7 @@ fun main(args: Array<String>) {
 
         override fun onResult(resultMessage: ServerMessage?) {
             resultMessage.toString()
+            "sss".split(".")
         }
 
         override fun onSubscriptionMessage(message: SubscriptionMessage?) {

@@ -22,6 +22,7 @@ import ru.nick252.types.results.config.ConfigResultMessage
 import ru.nick252.types.results.services.ServicesResultMessage
 import ru.nick252.types.results.states.StatesResultMessage
 import ru.nick252.types.server.MessageId
+import ru.nick252.utils.ErrorUtils.printError
 
 abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
     private val socket: WebSocketClient
@@ -56,8 +57,8 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
     fun onAuthRequired(message: InitMessage?) {
         try {
             socket.send(getJackson().writeValueAsString(AuthMessage(token)))
-        } catch (ex: Exception) {
-            System.err.println("onAuthRequired:" + ex.message)
+        } catch (ex: Throwable) {
+            printError("onAuthRequired: $message ${ex.stackTraceToString()}")
         }
     }
 
@@ -71,8 +72,8 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
         try {
             socket.send(getJackson().writeValueAsString(message))
             request.put(message.id, message)
-        } catch (ex: Exception) {
-            System.err.println("send:" + ex.message)
+        } catch (ex: Throwable) {
+            printError("send: ${ex.stackTraceToString()}")
         }
     }
 
@@ -109,18 +110,17 @@ abstract class HomeAssistantWS(serverUri: URI?, private val token: String) {
                         )
                         ServerTypes.PONG -> onPong(getJackson().readValue(message, ServerMessage::class.java))
                     }
-                } catch (exception: Exception) {
-                    exception.printStackTrace()
+                } catch (ex: Throwable) {
+                    printError(ex.stackTraceToString())
                 }
             }
 
             override fun onClose(code: Int, reason: String, remote: Boolean) {
-                println("Socket_Closed: $code - $reason - $remote")
+                printError("Socket_Closed: $code - $reason - $remote")
             }
 
             override fun onError(ex: Exception) {
-                println("Socket_Error: " + ex.message)
-                ex.fillInStackTrace()
+                printError("Socket_Error: ${ex.stackTraceToString()}")
             }
         }
     }

@@ -6,5 +6,6 @@ data class ServicesResult(
     val recorder: ServicesRecorder?,
     val logger: ServicesLogger?,
     val systemLog: ServicesSystemLog?,
-    val mqtt: ServicesMqtt?
+    val mqtt: ServicesMqtt?,
+    val cloud: ServicesCloud
 )

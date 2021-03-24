@@ -21,5 +21,5 @@ data class ServicesFields(
     val payloadTemplate: ServicesDescriptionExample?,
     val qos: ServicesDescriptionExample?,
     val retain: ServicesDescriptionExample?,
-    val duration: ServicesDuration?
+    val duration: ServicesDescriptionExample?
 )

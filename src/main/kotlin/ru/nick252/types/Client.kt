@@ -10,13 +10,12 @@ object Client {
     const val GET_SERVICES = "get_services"
     const val GET_PANELS = "get_panels"
 
-    @Deprecated("")
-    val CAMERA_THUMBNAIL = "camera_thumbnail"
+    const val CAMERA_THUMBNAIL = "camera_thumbnail"
     const val MEDIA_PLAYER_THUMBNAIL = "media_player_thumbnail"
     const val PING = "ping"
 
     class AuthMessage(val accessToken: String) : SocketMessage(AUTH)
-    open class ClientMessage(type: String?, val id: Int) : SocketMessage(type)
+    abstract class ClientMessage(type: String?, val id: Int) : SocketMessage(type)
     class SubscribeEvents(id: Int) : ClientMessage(SUBSCRIBE_EVENTS, id) {
         var eventType: String = ""
             private set
@@ -44,8 +43,7 @@ object Client {
     class GetPanelsMessage(id: Int) : ClientMessage(GET_PANELS, id)
     open class ClientEntityMessage(type: String?, id: Int, val entityId: String) : ClientMessage(type, id)
 
-    @Deprecated("")
-    class CameraThumbnailMessage @Deprecated("") constructor(id: Int, entityId: String) : ClientEntityMessage(
+    class CameraThumbnailMessage(id: Int, entityId: String) : ClientEntityMessage(
         CAMERA_THUMBNAIL, id, entityId
     )
 
